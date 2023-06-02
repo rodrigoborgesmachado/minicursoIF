@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+    </header>
+    <body>
+        <div class="formulario">
+            <h1>Pessoas Aleatórias</h1>
+            <br/>
+            <div class="pessoa">
+                <p>Nome:</p>
+                <input type="text" id="nome"/>
+            </div>
+            <div class="pessoa">
+                <p>CPF:</p>
+                <input type="text" id="cpf"/>
+            </div>
+            <div class="pessoa">
+                <p>Data Nascimento:</p>
+                <input type="text" id="aniversario"/>
+            </div>
+            <div class="pessoa">
+                <p>Email:</p>
+                <input type="text" id="email"/>
+            </div>
+            <div class="pessoa">
+                <p>Senha:</p>
+                <input type="text" id="senha"/>
+            </div>
+            <div class="pessoa">
+                <button id="gerarPessoa" onclick="BuscaPessoaAleatoria()">Gerar Aleatório</button>
+            </div>
+        </div>
+    </body>
+    <script>
+        function BuscaPessoaAleatoria(){
+            var requestOptions = {
+              method: 'GET',
+              redirect: 'follow'
+            };
+
+            fetch("https://apisunsale.azurewebsites.net/api/ForDevPublic/person/random?qt=1", requestOptions)
+              .then(response => response.text())
+              .then(result => {
+                var json = JSON.parse(result).object[0];
+
+                document.getElementById('nome').value = json.nome;
+                document.getElementById('cpf').value = json.cpf;
+                document.getElementById('email').value = json.email;
+                document.getElementById('senha').value = json.senha;
+                document.getElementById('aniversario').value = json.dataNascimento;
+              })
+              .catch(error => console.log('error', error));
+        }
+    </script>
+</html>
