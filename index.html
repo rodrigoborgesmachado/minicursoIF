@@ -21,6 +21,10 @@
                 <input type="text" id="aniversario"/>
             </div>
             <div class="pessoa">
+                <p>Rg:</p>
+                <input type="text" id="rg"/>
+            </div>
+            <div class="pessoa">
                 <p>Email:</p>
                 <input type="text" id="email"/>
             </div>
@@ -50,6 +54,7 @@
                 document.getElementById('email').value = json.email;
                 document.getElementById('senha').value = json.senha;
                 document.getElementById('aniversario').value = json.dataNascimento;
+                document.getElementById('rg').value = json.rg;
               })
               .catch(error => console.log('error', error));
         }
